@@ -7,8 +7,39 @@ import { Component } from '@angular/core';
 })
 export class FeedComponent {
 posts = [
-  { user: 'Ahmed – Plombier', location: 'Casablanca', text: "J'ai installé un nouveau système...", image: 'assets/portfolio1.jpg', likes: 12, comments: 3 },
-  { user: 'Sara – Electricien', location: 'Rabat', text: "Réparation d'installation électrique réussie !", video: 'assets/video1.mp4', likes: 8, comments: 2 }
-];
+    {
+      user: 'Ahmed – Plombier',
+      text: 'Installation complète chez un client 👍',
+      image: 'assets/portfolio1.jpg',
+      likes: 18,
+      liked: false,
+      comments: [
+        { user: 'Sara', text: 'Excellent travail 👏' },
+        { user: 'Yassine', text: 'Bravo 🔥' },
+        { user: 'Khadija', text: 'Bonne continuation 💪' }
+      ],
+      showComments: false,
+      newComment: ''
+    }
+  ];
+
+  toggleLike(post: any) {
+    post.liked = !post.liked;
+    post.likes += post.liked ? 1 : -1;
+  }
+
+  toggleComments(post: any) {
+    post.showComments = !post.showComments;
+  }
+
+  addComment(post: any) {
+    if (post.newComment.trim() !== '') {
+      post.comments.push({
+        user: 'Admin',
+        text: post.newComment
+      });
+      post.newComment = '';
+    }
+  }
 
 }
