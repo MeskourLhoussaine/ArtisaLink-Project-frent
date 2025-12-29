@@ -1,0 +1,22 @@
+<div class="bg-white p-6 rounded-lg shadow space-y-6">
+  <div class="flex flex-col md:flex-row items-center gap-6">
+    <img src="assets/user.png" class="w-24 h-24 rounded-full"/>
+    <div>
+      <p class="font-bold text-2xl">Ahmed Artisan</p>
+      <p class="text-gray-500">Plombier • Casablanca</p>
+      <p class="mt-2">Expert en installations et réparations de plomberie, disponible pour interventions urgentes.</p>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="font-bold text-xl mb-4">Portfolio</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <img *ngFor="let img of images" [src]="img.url" class="w-full h-32 object-cover rounded-lg"/>
+    </div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <video *ngFor="let vid of videos" controls class="w-full rounded-lg">
+        <source [src]="vid.url" type="video/mp4"/>
+      </video>
+    </div>
+  </div>
+</div>
