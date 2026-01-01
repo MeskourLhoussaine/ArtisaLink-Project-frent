@@ -1,45 +1,65 @@
 import { Component } from '@angular/core';
+import { Post } from '../../models/post';
+
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrl: './feed.component.css'
+  styleUrls: ['./feed.component.css']   // يمكن تحيدها إذا ما عندكش CSS
 })
 export class FeedComponent {
-posts = [
+
+  posts: Post[] = [
     {
-      user: 'Ahmed – Plombier',
-      text: 'Installation complète chez un client 👍',
-      image: 'assets/portfolio1.jpg',
-      likes: 18,
-      liked: false,
+      id: 1,
+      title: 'Installation plomberie',
+      description: 'Installation complète chez un client, travail propre et rapide.',
+      imageUrl: 'assets/portfolio1.jpg',
+      createdAt: '2025-01-10 14:30',
+      likes: [{ user: 'Sara' }, { user: 'Yassine' }],
       comments: [
-        { user: 'Sara', text: 'Excellent travail 👏' },
-        { user: 'Yassine', text: 'Bravo 🔥' },
-        { user: 'Khadija', text: 'Bonne continuation 💪' }
+        { user: 'Sara', content: 'Très bon travail 👏' },
+        { user: 'Yassine', content: 'Bravo 🔥' }
       ],
+      liked: false,
+      showComments: false,
+      newComment: ''
+    },
+    {
+      id: 2,
+      title: 'Réparation électrique',
+      description: 'Dépannage électrique urgent réussi.',
+      videoUrl: 'assets/video1.mp4',
+      createdAt: '2025-01-11 09:10',
+      likes: [{ user: 'Khadija' }],
+      comments: [],
+      liked: false,
       showComments: false,
       newComment: ''
     }
   ];
 
-  toggleLike(post: any) {
+  toggleLike(post: Post) {
     post.liked = !post.liked;
-    post.likes += post.liked ? 1 : -1;
+
+    if (post.liked) {
+      post.likes.push({ user: 'Admin' });
+    } else {
+      post.likes.pop();
+    }
   }
 
-  toggleComments(post: any) {
+  toggleComments(post: Post) {
     post.showComments = !post.showComments;
   }
 
-  addComment(post: any) {
-    if (post.newComment.trim() !== '') {
+  addComment(post: Post) {
+    if (post.newComment?.trim()) {
       post.comments.push({
         user: 'Admin',
-        text: post.newComment
+        content: post.newComment
       });
       post.newComment = '';
     }
   }
-
 }
