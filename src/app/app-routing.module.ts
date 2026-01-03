@@ -15,6 +15,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'my-services', component: MyServicesComponent },
   { path: 'orders', component: OrdersComponent },
+  { path: 'profile/:id', component: ProfileComponent }
+
 ];
 
 @NgModule({

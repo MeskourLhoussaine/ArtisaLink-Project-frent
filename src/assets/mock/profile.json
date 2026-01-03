@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "name": "Ahmed Artisan",
+  "job": "Plombier",
+  "city": "Casablanca",
+  "followers": 128,
+  "following": 35,
+  "rating": 4.7,
+  "bio": "Plombier professionnel avec 10 ans d’expérience. Travail propre et rapide.",
+  "avatar": "assets/user.jpg",
+  "gallery": [
+    "assets/work1.jpg",
+    "assets/work2.jpg",
+    "assets/work3.jpg"
+  ],
+  "services": [
+    { "title": "Installation sanitaire", "price": "300 MAD" },
+    { "title": "Réparation fuite", "price": "150 MAD" },
+    { "title": "Chauffe-eau", "price": "500 MAD" }
+  ],
+  "reviews": [
+    { "user": "Yassine", "comment": "Service ممتاز 👍", "stars": 5 },
+    { "user": "Sara", "comment": "Rapide et professionnel", "stars": 4 }
+  ]
+}

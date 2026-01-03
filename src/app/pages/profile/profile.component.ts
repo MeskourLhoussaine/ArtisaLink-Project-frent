@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  templateUrl: './profile.component.html'
 })
-export class ProfileComponent {
-images = [
-  { url: 'assets/portfolio1.jpg' },
-  { url: 'assets/portfolio2.jpg' },
-  { url: 'assets/portfolio3.jpg' },
-];
-videos = [
-  { url: 'assets/video1.mp4' },
-  { url: 'assets/video2.mp4' },
-];
+export class ProfileComponent implements OnInit {
 
+  profile: any;
+
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe(data => {
+      this.profile = data;
+    });
+  }
+
+  starsArray(n: number) {
+    return Array(n);
+  }
 }

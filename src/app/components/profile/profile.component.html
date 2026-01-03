@@ -1,0 +1,90 @@
+<div *ngIf="profile" class="max-w-6xl mx-auto p-4 space-y-6">
+
+  <!-- Header -->
+  <div class="bg-white p-6 rounded-lg shadow flex gap-6 relative">
+
+    <!-- Edit Icon -->
+    <button
+      *ngIf="!editMode"
+      class="absolute top-4 right-4 text-gray-500 hover:text-blue-600"
+      (click)="enableEdit()">
+      <span class="material-icons">edit</span>
+    </button>
+
+    <!-- Avatar -->
+    <div class="relative">
+      <img [src]="profile.avatar" class="w-28 h-28 rounded-full border"/>
+      <label
+        *ngIf="editMode"
+        class="absolute bottom-1 right-1 bg-blue-600 text-white p-1 rounded-full cursor-pointer">
+        <span class="material-icons text-sm">photo_camera</span>
+        <input type="file" hidden (change)="onImageChange($event)"/>
+      </label>
+    </div>
+
+    <!-- Info -->
+    <div class="flex-1 space-y-2">
+
+      <!-- Name -->
+      <div>
+        <input
+          *ngIf="editMode"
+          [(ngModel)]="profile.name"
+          class="border px-2 py-1 rounded w-full"/>
+        <h2 *ngIf="!editMode" class="text-2xl font-bold">
+          {{ profile.name }}
+        </h2>
+      </div>
+
+      <!-- Job -->
+      <div>
+        <input
+          *ngIf="editMode"
+          [(ngModel)]="profile.job"
+          class="border px-2 py-1 rounded w-full"/>
+        <p *ngIf="!editMode" class="text-gray-500">
+          {{ profile.job }} • {{ profile.city }}
+        </p>
+      </div>
+
+      <!-- City -->
+      <div *ngIf="editMode">
+        <input
+          [(ngModel)]="profile.city"
+          class="border px-2 py-1 rounded w-full"/>
+      </div>
+
+      <!-- Bio -->
+      <div>
+        <textarea
+          *ngIf="editMode"
+          [(ngModel)]="profile.bio"
+          class="border w-full p-2 rounded"></textarea>
+        <p *ngIf="!editMode">{{ profile.bio }}</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex gap-6 mt-2">
+        <span><b>{{ profile.followers }}</b> Followers</span>
+        <span><b>{{ profile.following }}</b> Following</span>
+        <span><b>{{ profile.rating }}</b>/5 ⭐</span>
+      </div>
+
+      <!-- Buttons -->
+      <div *ngIf="editMode" class="flex gap-3 mt-4">
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded"
+          (click)="saveProfile()">
+          Sauvegarder
+        </button>
+        <button
+          class="border px-4 py-2 rounded"
+          (click)="cancelEdit()">
+          Annuler
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

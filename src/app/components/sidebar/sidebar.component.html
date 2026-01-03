@@ -1,12 +1,61 @@
 <div class="bg-white p-4 rounded-lg shadow">
+
+  <!-- PROFILE -->
   <div class="text-center">
-    <img src="assets/user.jpg" class="w-20 h-20 rounded-full mx-auto"/>
-    <h3 class="font-bold mt-2">Ahmed Artisan</h3>
-    <p class="text-gray-500">Plombier • Casablanca</p>
+
+    <!-- CLICKABLE IMAGE -->
+    <a
+      routerLink="/profile/1"
+      class="block cursor-pointer group"
+    >
+  <img
+  src="assets/user.jpg"
+  class="w-20 h-20 rounded-full mx-auto cursor-pointer hover:scale-105 transition"
+  routerLink="/profile/1"
+/>
+
+
+    </a>
+
+    <!-- NAME (also clickable, optional) -->
+    <a
+      routerLink="/profile/1"
+      class="block"
+    >
+      <h3
+        class="font-bold mt-2 hover:text-blue-600 transition"
+      >
+        Ahmed Artisan
+      </h3>
+    </a>
+
+    <p class="text-gray-500 text-sm">
+      Plombier • Casablanca
+    </p>
   </div>
+
+  <!-- NAV -->
   <nav class="mt-4 space-y-2">
-    <a class="block p-2 rounded hover:bg-gray-100" routerLink="/dashboard">Home</a>
-    <a class="block p-2 rounded hover:bg-gray-100" routerLink="/my-services">My Services</a>
-    <a class="block p-2 rounded hover:bg-gray-100" routerLink="/orders">Orders</a>
+    <a
+      class="block p-2 rounded hover:bg-gray-100"
+      routerLink="/dashboard"
+    >
+      Home
+    </a>
+
+    <a
+      class="block p-2 rounded hover:bg-gray-100"
+      routerLink="/my-services"
+    >
+      My Services
+    </a>
+
+    <a
+      class="block p-2 rounded hover:bg-gray-100"
+      routerLink="/orders"
+    >
+      Orders
+    </a>
   </nav>
+
 </div>
