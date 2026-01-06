@@ -1,0 +1,131 @@
+/* LinkedIn-style Profile CSS */
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-duration: 200ms;
+}
+
+/* Card hover effects */
+.bg-white {
+  transition: box-shadow 0.2s ease;
+}
+
+/* Button styles - LinkedIn blue */
+button {
+  transition: all 0.2s ease;
+}
+
+/* Link hover effects */
+a:hover {
+  transition: all 0.15s ease;
+}
+
+/* Profile image border animation */
+img[alt="Avatar"] {
+  transition: transform 0.3s ease;
+}
+
+img[alt="Avatar"]:hover {
+  transform: scale(1.02);
+}
+
+/* Service card animations */
+.border:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Gallery image zoom effect */
+.group img {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar (LinkedIn style) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Action button hover effects */
+.bg-blue-600:hover {
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+}
+
+/* Material icons alignment */
+.material-icons {
+  vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lg\:col-span-2, .lg\:col-span-1 {
+    grid-column: span 1;
+  }
+}
+
+/* Card section spacing */
+.bg-white.rounded-lg {
+  backdrop-filter: blur(10px);
+}
+
+/* Rating stars animation */
+.material-icons.text-yellow-400 {
+  animation: star-pulse 2s ease-in-out infinite;
+}
+
+@keyframes star-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Profile stat hover */
+a.text-blue-600:hover {
+  color: #004182;
+}
+
+/* Enhanced shadow on scroll */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* LinkedIn-style focus states */
+button:focus, a:focus {
+  outline: 2px solid #0A66C2;
+  outline-offset: 2px;
+}
+
+/* Gradient cover photo animation */
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

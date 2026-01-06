@@ -1,16 +1,22 @@
 <div *ngFor="let post of posts"
-     class="bg-white rounded-xl shadow mb-6 border">
+     class="bg-white rounded-xl shadow mb-6 border hover:shadow-lg transition">
 
   <!-- HEADER -->
-  <div class="flex items-center gap-3 p-4">
-    <img src="assets/user.png"
-         class="w-10 h-10 rounded-full">
-    <div>
-      <p class="font-semibold">Artisan</p>
-      <p class="text-xs text-gray-500">
-        {{ post.createdAt }}
-      </p>
+  <div class="flex items-center justify-between p-4">
+    <div class="flex items-center gap-3">
+      <img src="assets/user.png"
+           class="w-10 h-10 rounded-full">
+      <div>
+        <p class="font-semibold">Artisan</p>
+        <p class="text-xs text-gray-500 flex items-center gap-1">
+          <ng-icon name="heroCalendar" size="14"></ng-icon>
+          {{ post.createdAt }}
+        </p>
+      </div>
     </div>
+    <button class="p-2 hover:bg-gray-100 rounded-full transition">
+      <ng-icon name="heroEllipsisVertical" size="20" class="text-gray-600"></ng-icon>
+    </button>
   </div>
 
   <!-- CONTENT -->
@@ -31,9 +37,15 @@
   </video>
 
   <!-- STATS -->
-  <div class="flex justify-between px-4 py-2 text-sm text-gray-500">
-    <span>👍 {{ post.likes.length }} Likes</span>
-    <span>{{ post.comments.length }} Comments</span>
+  <div class="flex justify-between px-4 py-2 text-sm text-gray-500 border-t mt-2">
+    <span class="flex items-center gap-1">
+      <ng-icon name="heroHeartSolid" size="16" class="text-red-500"></ng-icon>
+      {{ post.likes.length }} J'aime
+    </span>
+    <span class="flex items-center gap-1">
+      <ng-icon name="heroChatBubbleOvalLeft" size="16"></ng-icon>
+      {{ post.comments.length }} Commentaires
+    </span>
   </div>
 
   <hr>
@@ -43,39 +55,51 @@
 
     <button (click)="toggleLike(post)"
             [class.text-blue-600]="post.liked"
-            class="flex items-center gap-1 px-4 py-2 rounded hover:bg-gray-100">
-      👍 Like
+            class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+      <ng-icon [name]="post.liked ? 'heroHeartSolid' : 'heroHeart'" 
+               [class.text-red-500]="post.liked"
+               size="20"></ng-icon>
+      <span>J'aime</span>
     </button>
 
     <button (click)="toggleComments(post)"
-            class="flex items-center gap-1 px-4 py-2 rounded hover:bg-gray-100">
-      💬 Comment
+            class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+      <ng-icon name="heroChatBubbleOvalLeft" size="20"></ng-icon>
+      <span>Commenter</span>
     </button>
 
-    <button class="flex items-center gap-1 px-4 py-2 rounded hover:bg-gray-100">
-      📤 Share
+    <button class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+      <ng-icon name="heroShare" size="20"></ng-icon>
+      <span>Partager</span>
     </button>
 
   </div>
 
   <!-- COMMENTS -->
-  <div *ngIf="post.showComments" class="px-4 pb-4 space-y-2">
+  <div *ngIf="post.showComments" class="px-4 pb-4 space-y-3 bg-gray-50">
 
     <div *ngFor="let c of post.comments"
-         class="bg-gray-100 p-2 rounded text-sm">
-      <span class="font-semibold">{{ c.user }}</span>
-      {{ c.content }}
+         class="bg-white p-3 rounded-lg shadow-sm">
+      <div class="flex items-start gap-2">
+        <img src="assets/user.png" class="w-8 h-8 rounded-full">
+        <div class="flex-1">
+          <span class="font-semibold text-sm">{{ c.user }}</span>
+          <p class="text-sm text-gray-700 mt-1">{{ c.content }}</p>
+        </div>
+      </div>
     </div>
 
     <!-- ADD COMMENT -->
     <div class="flex gap-2 pt-2">
+      <img src="assets/user.jpg" class="w-8 h-8 rounded-full">
       <input [(ngModel)]="post.newComment"
-             placeholder="Write a comment..."
-             class="flex-1 border rounded-full px-4 py-1">
+             placeholder="Écrire un commentaire..."
+             class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
       <button (click)="addComment(post)"
-              class="bg-blue-600 text-white px-4 rounded-full">
-        Send
+              class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition flex items-center gap-2">
+        <ng-icon name="heroPaperAirplane" size="18"></ng-icon>
+        <span class="hidden sm:inline">Envoyer</span>
       </button>
     </div>
 
