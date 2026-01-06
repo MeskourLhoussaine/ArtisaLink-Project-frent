@@ -1,205 +1,166 @@
-<div *ngIf="profile" class="bg-gray-100 min-h-screen">
-  <div class="max-w-5xl mx-auto px-4 py-6">
-    
-    <!-- ================= MAIN PROFILE CARD ================= -->
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-4">
-      <!-- Cover Photo -->
-      <div class="h-48 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 relative">
-        <button class="absolute top-4 right-4 bg-white/90 hover:bg-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition">
-          <ng-icon name="heroCamera" size="18"></ng-icon>
-          Modifier la photo de couverture
-        </button>
-      </div>
+<div *ngIf="profile" class="max-w-6xl mx-auto px-4 py-6 space-y-6">
 
-      <!-- Profile Info Section -->
-      <div class="px-6 pb-6">
-        <!-- Avatar (overlapping cover) -->
-        <div class="relative -mt-16 mb-4">
-          <div class="inline-block relative group">
-            <img
-              [src]="profile.avatar"
-              alt="Avatar"
-              class="w-36 h-36 rounded-full border-4 border-white object-cover bg-white shadow-lg"
-            />
-            <button class="absolute bottom-2 right-2 bg-white hover:bg-gray-100 p-2 rounded-full shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition">
-              <ng-icon name="heroCamera" size="20" class="text-gray-700"></ng-icon>
-            </button>
-          </div>
-        </div>
+  <!-- ================= HEADER ================= -->
+  <div
+    class="bg-white rounded-xl shadow flex flex-col md:flex-row gap-6 p-6
+           hover:shadow-lg transition">
 
-        <!-- Name & Title -->
-        <div class="mb-2">
-          <h1 class="text-2xl font-bold text-gray-900">{{ profile.name }}</h1>
-          <p class="text-lg text-gray-700">{{ profile.job }}</p>
-          <p class="text-sm text-gray-500 mt-1 flex items-center gap-1">
-            <ng-icon name="heroMapPin" size="16"></ng-icon>
-            {{ profile.city }}, Maroc
+    <!-- Avatar -->
+    <div class="relative group">
+      <img
+        [src]="profile.avatar"
+        alt="Avatar"
+        class="w-32 h-32 rounded-full border-4 border-blue-100 object-cover"
+      />
+
+      <!-- edit avatar -->
+      <span
+        class="material-icons absolute bottom-2 right-2 text-white bg-blue-600
+               p-1.5 rounded-full text-sm opacity-0 group-hover:opacity-100
+               transition cursor-pointer"
+        title="Modifier la photo">
+        camera_alt
+      </span>
+    </div>
+
+    <!-- Info -->
+    <div class="flex-1">
+      <div class="flex justify-between items-start">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800">
+            {{ profile.name }}
+          </h2>
+          <p class="text-gray-500">
+            {{ profile.job }} • {{ profile.city }}
           </p>
         </div>
 
-        <!-- Stats Bar -->
-        <div class="flex items-center gap-4 text-sm py-3 border-b">
-          <a href="#" class="text-blue-600 hover:underline font-semibold flex items-center gap-1">
-            <ng-icon name="heroUsers" size="16"></ng-icon>
-            {{ profile.followers }} abonnés
-          </a>
-          <a href="#" class="text-blue-600 hover:underline font-semibold">
-            {{ profile.following }} abonnements
-          </a>
-        </div>
+        <!-- edit profile -->
+        <button
+          class="flex items-center gap-1 border px-3 py-1.5 rounded-full
+                 text-sm hover:bg-gray-100 transition">
+          <span class="material-icons text-sm">edit</span>
+          Modifier
+        </button>
+      </div>
 
-        <!-- Action Buttons -->
-        <div class="flex gap-2 mt-4">
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition flex items-center gap-2">
-            <ng-icon name="heroChatBubbleLeftRight" size="18"></ng-icon>
-            Envoyer un message
-          </button>
-          <button class="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-2 rounded-full font-semibold transition flex items-center gap-2">
-            <ng-icon name="heroUserCircle" size="18"></ng-icon>
-            Suivre
-          </button>
-          <button class="border border-gray-300 hover:bg-gray-50 px-4 py-2 rounded-full transition">
-            <ng-icon name="heroEllipsisVertical" size="18" class="text-gray-600"></ng-icon>
-          </button>
+      <!-- Stats -->
+      <div class="flex flex-wrap gap-8 mt-4 text-sm">
+        <div class="text-center">
+          <p class="font-bold">{{ profile.followers }}</p>
+          <p class="text-gray-500">Followers</p>
         </div>
+        <div class="text-center">
+          <p class="font-bold">{{ profile.following }}</p>
+          <p class="text-gray-500">Following</p>
+        </div>
+        <div class="text-center">
+          <p class="font-bold flex items-center gap-1">
+            {{ profile.rating }}
+            <span class="material-icons text-yellow-400 text-sm">star</span>
+          </p>
+          <p class="text-gray-500">Rating</p>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <p class="mt-4 text-gray-700 leading-relaxed">
+        {{ profile.bio }}
+      </p>
+
+      <!-- Actions -->
+      <div class="mt-5 flex gap-3">
+        <button
+          class="bg-blue-600 text-white px-5 py-2 rounded-full
+                 hover:bg-blue-700 transition">
+          Contacter
+        </button>
+
+        <button
+          class="border px-5 py-2 rounded-full hover:bg-gray-100 transition">
+          Suivre
+        </button>
       </div>
     </div>
-
-    <!-- Two Column Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      
-      <!-- Left Column -->
-      <div class="lg:col-span-1 space-y-4">
-        
-        <!-- À propos -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <ng-icon name="heroDocumentText" size="20"></ng-icon>
-            À propos
-          </h2>
-          <p class="text-gray-700 text-sm leading-relaxed">{{ profile.bio }}</p>
-        </div>
-
-        <!-- Rating Card -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <ng-icon name="heroStar" size="20"></ng-icon>
-            Évaluation
-          </h2>
-          <div class="flex items-center gap-3">
-            <div class="text-4xl font-bold text-gray-900">{{ profile.rating }}</div>
-            <div>
-              <div class="flex mb-1">
-                <ng-icon *ngFor="let s of starsArray(5)" 
-                      name="heroStarSolid"
-                      [class.text-yellow-400]="s < profile.rating"
-                      [class.text-gray-300]="s >= profile.rating"
-                      size="20"></ng-icon>
-              </div>
-              <p class="text-xs text-gray-500">Basé sur {{ profile.reviews.length }} avis</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Right Column -->
-      <div class="lg:col-span-2 space-y-4">
-
-        <!-- Services -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <ng-icon name="heroBriefcase" size="20"></ng-icon>
-              Services proposés
-            </h2>
-            <button class="text-blue-600 hover:underline text-sm font-semibold flex items-center gap-1">
-              <ng-icon name="heroPlusCircle" size="18"></ng-icon>
-              Ajouter
-            </button>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div *ngFor="let s of profile.services" 
-                 class="border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-gray-300 transition cursor-pointer">
-              <h3 class="font-semibold text-gray-900 mb-2">{{ s.title }}</h3>
-              <p class="text-blue-600 font-bold text-lg">{{ s.price }}</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Réalisations (Gallery) -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <ng-icon name="heroPhoto" size="20"></ng-icon>
-              Réalisations
-            </h2>
-            <button class="text-blue-600 hover:underline text-sm font-semibold flex items-center gap-1">
-              <ng-icon name="heroPlusCircle" size="18"></ng-icon>
-              Ajouter
-            </button>
-          </div>
-
-          <div class="grid grid-cols-3 gap-3">
-            <div *ngFor="let img of profile.gallery" 
-                 class="relative aspect-square overflow-hidden rounded-lg group cursor-pointer bg-gray-100">
-              <img [src]="img" 
-                   alt="Réalisation" 
-                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                <ng-icon name="heroEye" size="32" class="text-white"></ng-icon>
-              </div>
-            </div>
-          </div>
-
-          <button class="w-full mt-4 text-center py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-semibold text-sm transition flex items-center justify-center gap-2">
-            Afficher toutes les réalisations
-            <ng-icon name="heroArrowRight" size="16"></ng-icon>
-          </button>
-        </div>
-
-        <!-- Avis et recommandations -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <ng-icon name="heroCheckBadge" size="20"></ng-icon>
-              Avis et recommandations
-            </h2>
-          </div>
-
-          <div class="space-y-4">
-            <div *ngFor="let r of profile.reviews" 
-                 class="border-b border-gray-200 pb-4 last:border-0">
-              <div class="flex gap-3">
-                <!-- Avatar placeholder -->
-                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold flex-shrink-0">
-                  {{ r.user.charAt(0) }}
-                </div>
-                
-                <div class="flex-1">
-                  <div class="flex items-center justify-between mb-1">
-                    <h3 class="font-semibold text-gray-900">{{ r.user }}</h3>
-                    <div class="flex">
-                      <ng-icon *ngFor="let s of starsArray(r.stars)" 
-                            name="heroStarSolid"
-                            class="text-yellow-400"
-                            size="16"></ng-icon>
-                    </div>
-                  </div>
-                  <p class="text-gray-700 text-sm leading-relaxed">{{ r.comment }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button class="w-full mt-4 text-center py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-semibold text-sm transition border border-gray-300">
-            Afficher tous les avis ({{ profile.reviews.length }})
-          </button>
-        </div>
-
-      </div>
-    </div>
-
   </div>
+
+  <!-- ================= GALERIE ================= -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-xl font-semibold mb-4 flex items-center gap-1">
+      <span class="material-icons">photo_library</span>
+      Réalisations
+    </h3>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div
+        *ngFor="let img of profile.gallery"
+        class="relative overflow-hidden rounded-lg group cursor-pointer">
+
+        <img
+          [src]="img"
+          alt="Réalisation"
+          class="w-full h-40 object-cover
+                 group-hover:scale-110 transition duration-300"
+        />
+
+        <!-- overlay -->
+        <div
+          class="absolute inset-0 bg-black/40 flex items-center justify-center
+                 opacity-0 group-hover:opacity-100 transition">
+          <span class="material-icons text-white text-3xl">visibility</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SERVICES ================= -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-xl font-semibold mb-4 flex items-center gap-1">
+      <span class="material-icons">work</span>
+      Services
+    </h3>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <div
+        *ngFor="let s of profile.services"
+        class="border rounded-lg p-4 hover:shadow-md transition">
+
+        <h4 class="font-bold text-gray-800 mb-1">
+          {{ s.title }}
+        </h4>
+        <p class="text-blue-600 font-semibold">
+          {{ s.price }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AVIS ================= -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-xl font-semibold mb-4 flex items-center gap-1">
+      <span class="material-icons">rate_review</span>
+      Avis clients
+    </h3>
+
+    <div
+      *ngFor="let r of profile.reviews"
+      class="border-b py-4 last:border-none">
+
+      <div class="flex justify-between items-center">
+        <b>{{ r.user }}</b>
+        <div class="flex">
+          <span
+            *ngFor="let s of starsArray(r.stars)"
+            class="material-icons text-yellow-400 text-sm">
+            star
+          </span>
+        </div>
+      </div>
+
+      <p class="text-gray-700 mt-1">
+        {{ r.comment }}
+      </p>
+    </div>
+  </div>
+
 </div>
